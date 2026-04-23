@@ -1,37 +1,71 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PhD Thesis Presentation</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css" />
+  <link rel="stylesheet" href="css/custom.css" />
 </head>
 <body>
   <div class="reveal">
     <div class="slides">
+
       <section>
-        <h1>Machine Learning Models for Inference from Flow Fields prova</h1>
-        <p>Riccardo Margheritti</p>
+        <h1>Machine Learning Models for Inference from Flow Fields</h1>
+        <p class="muted">Feature Extraction and Data Augmentation in Computational Fluid Dynamics</p>
+        <p class="small">
+          Riccardo Margheritti<br />
+          PhD in Artificial Intelligence
+        </p>
       </section>
 
       <section>
         <h2>Motivation</h2>
-        <p>Large-p, Small-n regime</p>
+        <div class="two-col">
+          <div>
+            <ul>
+              <li>CFD data are high-dimensional</li>
+              <li>Labelled simulations are scarce</li>
+              <li>Geometric variability makes learning difficult</li>
+            </ul>
+          </div>
+          <div class="box">
+            \[
+            p \gg n
+            \]
+            <p class="small muted">Large-p, Small-n regime</p>
+          </div>
+        </div>
       </section>
+
+      <section>
+        <section>
+          <h2>Contribution I</h2>
+          <p>Geometry-based data augmentation</p>
+        </section>
+        <section>
+          <h2>Contribution I</h2>
+          <p class="small">Use vertical slides only when they are truly part of the same block.</p>
+        </section>
+      </section>
+
+      <section>
+        <h2>Morphing / CFD animation</h2>
+        <video controls width="900">
+          <source src="videos/morphing.mp4" type="video/mp4" />
+        </video>
+      </section>
+
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/math/math.js"></script>
-  <script>
-    Reveal.initialize({
-      hash: true,
-      slideNumber: true,
-      progress: true,
-      plugins: [ RevealMath.KaTeX ]
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+  <script src="js/config.js"></script>
 </body>
 </html>
