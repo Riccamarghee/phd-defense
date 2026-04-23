@@ -23,8 +23,8 @@
 }
 
 body.light-mode {
-  --bg-page: #f8fafc;
-  --bg-page-soft: #eef4f8;
+  --bg-page: #d6d8d9ef;
+  --bg-page-soft: #d6d8d9ef;
   --text-main: #0f172a;
   --text-muted: rgba(15, 23, 42, 0.62);
 
