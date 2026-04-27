@@ -1,4 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@font-face {
+  font-family: 'Delicious';
+  src: url('../fonts/Delicious_R_2021.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Delicious';
+  src: url('../fonts/Delicious_I_2021.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Delicious';
+  src: url('../fonts/Delicious_B_2021.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Delicious';
+  src: url('../fonts/Delicious_B_2021.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Delicious';
+  src: url('../fonts/Delicious_BI_2021.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Delicious';
+  src: url('../fonts/Delicious_BI_2021.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   --bg-page: #0f172a;
@@ -69,7 +115,7 @@ body {
 .reveal {
   font-size: 40.56px;
   color: var(--text-main);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Delicious', sans-serif;
 }
 
 .reveal .slides {
@@ -257,6 +303,23 @@ body {
   opacity: 0.92;
 }
 
+.font-credit {
+  position: fixed;
+  right: 14px;
+  bottom: 10px;
+  z-index: 1000;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1;
+  text-decoration: none;
+  opacity: 0.72;
+}
+
+.font-credit:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+
 .reveal section img,
 .reveal section video,
 .reveal section iframe {
@@ -268,6 +331,18 @@ body {
   object-fit: contain;
   margin: 0 auto;
   border-radius: 10px;
+}
+
+.reveal section img {
+  transition: filter 0.2s ease, transform 0.3s ease;
+}
+
+body:not(.light-mode) .reveal section img:not(.no-negative) {
+  filter: invert(1);
+}
+
+body.light-mode .reveal section img {
+  filter: none;
 }
 
 .reveal table {
