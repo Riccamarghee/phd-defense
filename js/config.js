@@ -20,6 +20,7 @@ const toolbarTitle = document.getElementById('toolbar-title');
 const toolbarSlide = document.getElementById('toolbar-slide');
 const toolbarProgressTotal = document.getElementById('toolbar-progress-total');
 const toolbarProgressSection = document.getElementById('toolbar-progress-section');
+const fixedSectionTitle = document.getElementById('fixed-section-title');
 
 function getSectionSlides(indices) {
   const horizontalSlides = Array.from(document.querySelectorAll('.reveal .slides > section'));
@@ -45,6 +46,9 @@ function updateToolbar() {
   const currentSlide = Reveal.getCurrentSlide();
   const indices = Reveal.getIndices();
   const slideTitle = currentSlide?.querySelector('h1, h2, h3')?.textContent?.trim();
+  const fixedTitleStack = currentSlide?.parentElement?.dataset.fixedTitle
+    ? currentSlide.parentElement
+    : null;
   const currentSlideIndex = Array.from(
     document.querySelectorAll('.reveal .slides section:not(.stack)')
   ).indexOf(currentSlide) + 1;
@@ -55,6 +59,8 @@ function updateToolbar() {
   const sectionProgress = getSectionProgress(indices);
 
   document.body.classList.toggle('hide-deck-toolbar', isTitleSlide);
+  document.body.classList.toggle('show-fixed-section-title', Boolean(fixedTitleStack));
+  fixedSectionTitle.textContent = fixedTitleStack?.dataset.fixedTitle || '';
   toolbarDate.textContent = new Intl.DateTimeFormat('it-IT', {
     day: '2-digit',
     month: 'short',

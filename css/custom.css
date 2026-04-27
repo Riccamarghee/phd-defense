@@ -84,8 +84,8 @@ body.light-mode {
   --button-bg: rgba(255, 255, 255, 0.96);
   --button-text: #0f172a;
 
-  --accent: #0284c7;
-  --accent-strong: #0369a1;
+  --accent: #0073ad;
+  --accent-strong: #0091df; /*  questa è la box*/
   --accent-soft: rgba(2, 132, 199, 0.10);
   --accent-orange: #e38501;
 
@@ -166,6 +166,28 @@ body.hide-deck-toolbar .deck-toolbar {
 
 body.light-mode .deck-toolbar {
   background: rgba(255, 255, 255, 0.84);
+}
+
+.fixed-section-title {
+  position: fixed;
+  top: 10%;
+  left: calc(50% - min(52vw, 960px));
+  z-index: 80;
+  display: none;
+  color: var(--text-main);
+  font-family: 'Delicious', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1.08;
+  pointer-events: none;
+}
+
+body.show-fixed-section-title .fixed-section-title {
+  display: block;
+}
+
+.reveal .slides > section.fixed-title-stack > section {
+  padding-top: 8rem;
 }
 
 .reveal .controls {
@@ -316,6 +338,33 @@ body.light-mode .deck-toolbar {
   align-items: start;
 }
 
+.motivation-stack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.motivation-layout {
+  align-items: center;
+}
+
+.motivation-side {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.motivation-figure {
+  margin: 0;
+}
+
+.motivation-figure img {
+  max-height: 34vh;
+  border-radius: 10px;
+}
+
+.motivation-figure-portrait img {
+  max-height: 38vh;
+}
+
 .three-col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -410,6 +459,7 @@ body.light-mode .deck-toolbar {
 }
 
 .reveal section img {
+  clip-path: inset(2px);
   transition: filter 0.2s ease, transform 0.3s ease;
 }
 

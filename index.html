@@ -13,6 +13,7 @@
   <button id="theme-toggle" class="theme-toggle" type="button">☀ / ☾</button>
 
   <div class="reveal">
+    <div id="fixed-section-title" class="fixed-section-title" aria-hidden="true"></div>
     <div class="slides">
 
       <section class="title-slide">
@@ -48,23 +49,47 @@
         </div>
       </section>
 
-      <section>
-        <h2>Motivation</h2>
-        <div class="two-col">
-          <div>
+      <section class="fixed-title-stack" data-fixed-title="Motivation">
+        <section>
+          <h3>From flow simulation to system inference</h3>
+          <div class="motivation-stack">
+            <div class="accent-box">
+              <p><strong>Can fluid dynamics be used to reason about the physical system, not only about the flow?</strong></p>
+            </div>
             <ul>
-              <li>CFD data are high-dimensional</li>
-              <li>Labelled simulations are scarce</li>
-              <li>Geometric variability makes learning difficult</li>
+              <li>Flow fields are observable manifestations of <strong>geometry</strong>, boundary conditions, and physical mechanisms.</li>
+              <li>CFD integrates these factors into a coherent physical response.</li>
+              <li>The flow field can act as an informative <strong>signature of the system</strong>.</li>
+              <li>Latent properties may be <strong>inferred</strong> from how they shape the resulting flow.</li>
             </ul>
+            <figure class="motivation-figure" style="justify-self: end; transform: translateX(21rem);">
+              <img src="images/car.png" alt="CFD flow field around a car" class="no-negative">
+            </figure>
           </div>
-          <div class="box">
-            \[
-            p \gg n
-            \]
-            <p class="small muted">Large-p, Small-n regime</p>
+        </section>
+
+        <section>
+          <h3>Learning from flow-field signatures</h3>
+          <div class="two-col motivation-layout">
+            <div style="transform: translateY(-7rem);">
+              <ul>
+                <li>ML models can extract information embedded in high-fidelity CFD fields.</li>
+                <li>Engineering defects or performance-limiting features may be identified from flow responses.</li>
+                <li>Biomedical airflow simulations can encode clinically relevant anatomical conditions.</li>
+                <li>This shifts CFD from a numerical evaluation tool to a medium for <strong>actionable inference</strong>.</li>
+              </ul>
+            </div>
+            <div class="motivation-side">
+              <div class="box">
+                <p class="section-title">Thesis focus</p>
+                <p>Coupling physics-based modelling with ML to reveal latent characteristics of physical systems.</p>
+              </div>
+              <figure class="motivation-figure motivation-figure-portrait">
+                <img src="images/nose-masked.png" alt="CFD airflow field in nasal anatomy" class="no-negative">
+              </figure>
+            </div>
           </div>
-        </div>
+        </section>
       </section>
 
       <section>
@@ -83,22 +108,6 @@
         <video controls width="900">
           <source src="videos/morphing.mp4" type="video/mp4" />
         </video>
-      </section>
-
-      <section>
-        <h2>Motivation</h2>
-        <div class="two-col">
-          <div>
-            <ul>
-              <li>High-dimensional CFD data</li>
-              <li>Scarce labelled simulations</li>
-              <li>Strong geometric variability</li>
-            </ul>
-          </div>
-          <div class="box">
-            <p class="highlight">Large-p, Small-n</p>
-          </div>
-        </div>
       </section>
 
       <section>
