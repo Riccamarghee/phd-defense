@@ -1,6 +1,6 @@
 Reveal.initialize({
   hash: true,
-  slideNumber: true,
+  slideNumber: false,
   controls: true,
   progress: true,
   center: false,
@@ -14,6 +14,32 @@ Reveal.initialize({
 
   plugins: [ RevealMath.KaTeX, RevealNotes, RevealHighlight ]
 });
+
+const toolbarDate = document.getElementById('toolbar-date');
+const toolbarTitle = document.getElementById('toolbar-title');
+const toolbarSlide = document.getElementById('toolbar-slide');
+
+function updateToolbar() {
+  const currentSlide = Reveal.getCurrentSlide();
+  const slideTitle = currentSlide?.querySelector('h1, h2, h3')?.textContent?.trim();
+  const currentSlideIndex = Array.from(
+    document.querySelectorAll('.reveal .slides section:not(.stack)')
+  ).indexOf(currentSlide) + 1;
+  const totalSlides = Reveal.getTotalSlides();
+  const isTitleSlide = currentSlide?.classList.contains('title-slide');
+
+  document.body.classList.toggle('hide-deck-toolbar', isTitleSlide);
+  toolbarDate.textContent = new Intl.DateTimeFormat('it-IT', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  }).format(new Date());
+  toolbarTitle.textContent = slideTitle || 'PhD Thesis Presentation';
+  toolbarSlide.textContent = `${currentSlideIndex}/${totalSlides}`;
+}
+
+Reveal.on('ready', updateToolbar);
+Reveal.on('slidechanged', updateToolbar);
 
 const themeToggle = document.getElementById('theme-toggle');
 const revealTheme = document.getElementById('reveal-theme');
