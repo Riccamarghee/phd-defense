@@ -2,7 +2,7 @@ Reveal.initialize({
   hash: true,
   slideNumber: false,
   controls: true,
-  progress: true,
+  progress: false,
   center: false,
   transition: 'slide',
 
@@ -18,15 +18,41 @@ Reveal.initialize({
 const toolbarDate = document.getElementById('toolbar-date');
 const toolbarTitle = document.getElementById('toolbar-title');
 const toolbarSlide = document.getElementById('toolbar-slide');
+const toolbarProgressTotal = document.getElementById('toolbar-progress-total');
+const toolbarProgressSection = document.getElementById('toolbar-progress-section');
+
+function getSectionSlides(indices) {
+  const horizontalSlides = Array.from(document.querySelectorAll('.reveal .slides > section'));
+  const currentHorizontalSlide = horizontalSlides[indices.h];
+  const verticalSlides = currentHorizontalSlide?.classList.contains('stack')
+    ? Array.from(currentHorizontalSlide.querySelectorAll(':scope > section'))
+    : [];
+
+  return verticalSlides.length || 1;
+}
+
+function getSectionProgress(indices) {
+  const sectionSlides = getSectionSlides(indices);
+
+  if (sectionSlides <= 1) {
+    return 100;
+  }
+
+  return ((indices.v + 1) / sectionSlides) * 100;
+}
 
 function updateToolbar() {
   const currentSlide = Reveal.getCurrentSlide();
+  const indices = Reveal.getIndices();
   const slideTitle = currentSlide?.querySelector('h1, h2, h3')?.textContent?.trim();
   const currentSlideIndex = Array.from(
     document.querySelectorAll('.reveal .slides section:not(.stack)')
   ).indexOf(currentSlide) + 1;
   const totalSlides = Reveal.getTotalSlides();
   const isTitleSlide = currentSlide?.classList.contains('title-slide');
+  const totalProgress = (currentSlideIndex / totalSlides) * 100;
+  const sectionSlides = getSectionSlides(indices);
+  const sectionProgress = getSectionProgress(indices);
 
   document.body.classList.toggle('hide-deck-toolbar', isTitleSlide);
   toolbarDate.textContent = new Intl.DateTimeFormat('it-IT', {
@@ -36,6 +62,8 @@ function updateToolbar() {
   }).format(new Date());
   toolbarTitle.textContent = slideTitle || 'PhD Thesis Presentation';
   toolbarSlide.textContent = `${currentSlideIndex}/${totalSlides}`;
+  toolbarProgressTotal.style.width = `${totalProgress}%`;
+  toolbarProgressSection.style.width = `${sectionProgress}%`;
 }
 
 Reveal.on('ready', updateToolbar);
