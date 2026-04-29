@@ -383,6 +383,18 @@ body.fixed-section-title-out .fixed-section-title {
   max-height: 32.3vh;
 }
 
+.aircraft-intro-figure {
+  justify-self: start;
+  transform: translate(-20rem, -28rem);
+  width: 58rem;
+}
+
+.aircraft-intro-figure img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
 .three-col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
