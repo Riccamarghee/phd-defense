@@ -467,7 +467,7 @@ body.fixed-section-title-out .fixed-section-title {
 }
 
 .reveal section img {
-  clip-path: inset(2px);
+  clip-path: inset(3px);
   transition: filter 0.2s ease, transform 0.3s ease;
 }
 
