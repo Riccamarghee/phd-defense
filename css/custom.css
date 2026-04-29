@@ -373,6 +373,16 @@ body.fixed-section-title-out .fixed-section-title {
   max-height: 38vh;
 }
 
+.nose-intro-figure {
+  justify-self: end;
+  align-self: end;
+  transform: translate(10rem, 26rem);
+}
+
+.nose-intro-figure img {
+  max-height: 32.3vh;
+}
+
 .three-col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
