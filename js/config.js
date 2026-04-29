@@ -21,6 +21,9 @@ const toolbarSlide = document.getElementById('toolbar-slide');
 const toolbarProgressTotal = document.getElementById('toolbar-progress-total');
 const toolbarProgressSection = document.getElementById('toolbar-progress-section');
 const fixedSectionTitle = document.getElementById('fixed-section-title');
+let previousFixedTitleStack = null;
+let previousSectionSlideIndex = 0;
+let previousSectionSlides = 1;
 
 function getSectionSlides(indices) {
   const horizontalSlides = Array.from(document.querySelectorAll('.reveal .slides > section'));
@@ -42,7 +45,7 @@ function getSectionProgress(indices) {
   return ((indices.v + 1) / sectionSlides) * 100;
 }
 
-function updateToolbar() {
+function updateToolbar(event = {}) {
   const currentSlide = Reveal.getCurrentSlide();
   const indices = Reveal.getIndices();
   const slideTitle = currentSlide?.querySelector('h1, h2, h3')?.textContent?.trim();
@@ -57,10 +60,30 @@ function updateToolbar() {
   const totalProgress = (currentSlideIndex / totalSlides) * 100;
   const sectionSlides = getSectionSlides(indices);
   const sectionProgress = getSectionProgress(indices);
+  const isLeavingEdgeFixedSlide = previousFixedTitleStack
+    && !fixedTitleStack
+    && (
+      previousSectionSlideIndex === 0
+      || previousSectionSlideIndex === previousSectionSlides - 1
+    );
 
   document.body.classList.toggle('hide-deck-toolbar', isTitleSlide);
-  document.body.classList.toggle('show-fixed-section-title', Boolean(fixedTitleStack));
+  document.body.classList.toggle('fixed-section-title-out', Boolean(isLeavingEdgeFixedSlide));
+  document.body.classList.toggle(
+    'show-fixed-section-title',
+    Boolean(fixedTitleStack || isLeavingEdgeFixedSlide)
+  );
   fixedSectionTitle.textContent = fixedTitleStack?.dataset.fixedTitle || '';
+  if (isLeavingEdgeFixedSlide) {
+    fixedSectionTitle.textContent = previousFixedTitleStack.dataset.fixedTitle || '';
+    window.setTimeout(() => {
+      const liveIndices = Reveal.getIndices();
+      if (liveIndices.h === event.indexh && liveIndices.v === event.indexv) {
+        document.body.classList.remove('show-fixed-section-title', 'fixed-section-title-out');
+        fixedSectionTitle.textContent = '';
+      }
+    }, 380);
+  }
   toolbarDate.textContent = new Intl.DateTimeFormat('it-IT', {
     day: '2-digit',
     month: 'short',
@@ -70,6 +93,10 @@ function updateToolbar() {
   toolbarSlide.textContent = `${currentSlideIndex}/${totalSlides}`;
   toolbarProgressTotal.style.width = `${totalProgress}%`;
   toolbarProgressSection.style.width = `${sectionProgress}%`;
+
+  previousFixedTitleStack = fixedTitleStack;
+  previousSectionSlideIndex = indices.v || 0;
+  previousSectionSlides = sectionSlides;
 }
 
 Reveal.on('ready', updateToolbar);

@@ -49,20 +49,17 @@
         </div>
       </section>
 
-      <section class="fixed-title-stack" data-fixed-title="Motivation">
+      <section class="fixed-title-stack" data-fixed-title="Introduction">
         <section>
-          <h3>From flow simulation to system inference</h3>
+          <h3>Fluid Dynamics and CFD</h3>
           <div class="motivation-stack">
-           
             <ul>
-              <li>Flow fields are observable manifestations of <strong>geometry</strong>, boundary conditions, and physical mechanisms.</li>
-              <li>The flow field can therefore act as an informative <strong>signature of the system</strong>.</li>
-              <li>Latent properties may be <strong>inferred</strong> from how they shape the resulting flow.</li>
-              <li>CFD becomes a natural tool for this purpose as CFD data are inherently informative.</li>
+              <li><strong>Fluid dynamics</strong> governs interaction between <strong>geometry</strong>, forces, transport</li>
+              <li>Central in <strong>aerodynamics</strong>, propulsion, <strong>biomedical</strong> and environmental systems</li>
+              <li><strong>CFD</strong> solves <strong>Navier–Stokes equations</strong> on discretized domains</li>
+              <li>Provides detailed <strong>velocity, pressure, turbulence</strong> fields</li>
+              <li>Enables study of <strong>complex, non-linear flows</strong></li>
             </ul>
-             <div class="accent-box">
-              <p><strong>Can fluid dynamics be used to reason about the physical system, not only about the flow?</strong></p>
-            </div>  
             <figure class="motivation-figure" style="justify-self: end; transform: translateX(21rem);">
               <img src="images/car.png" alt="CFD flow field around a car" class="no-negative">
             </figure>
@@ -70,26 +67,91 @@
         </section>
 
         <section>
-          <h3>Learning from flow-field signatures</h3>
-          <div class="two-col motivation-layout">
-            <div style="transform: translateY(-7rem);">
+          <h3>Power vs Cost of CFD</h3>
+          <ul>
+            <li>CFD gives <strong>high-fidelity flow information</strong></li>
+            <li>Works on <strong>complex geometries</strong> and conditions</li>
+            <li>Requires <strong>large computational resources</strong></li>
+            <li>Simulations can take <strong>hours to days</strong></li>
+            <li>Produces <strong>massive high-dimensional data</strong> which usually are limited to few cases</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>CFD as Data Problem</h3>
+          <ul>
+            <li>Each simulation → <strong>millions of spatial points</strong></li>
+            <li>Multiple <strong>physical variables</strong> per point</li>
+            <li>Strong dependency on <strong>geometry</strong></li>
+            <li>Few labelled samples → <strong>limited datasets</strong></li>
+            <li>Leads to <strong>Large-p, Small-n</strong> regime</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Machine Learning in CFD</h3>
+          <ul>
+            <li><strong>ML</strong> extracts patterns from <strong>complex data</strong></li>
+            <li>Used for:
               <ul>
-                <li>ML models can extract information embedded in high-fidelity CFD fields.</li>
-                <li>Engineering defects or performance-limiting features may be identified from flow responses.</li>
-                <li>Biomedical airflow simulations can encode clinically relevant anatomical conditions.</li>
-                <li>This shifts CFD from a numerical evaluation tool to a medium for <strong>actionable inference</strong>.</li>
+                <li><strong>flow reconstruction</strong></li>
+                <li><strong>simulation acceleration</strong></li>
+                <li><strong>turbulence modelling</strong></li>
               </ul>
-            </div>
-            <div class="motivation-side">
-              <div class="box">
-                <p class="section-title">Thesis focus</p>
-                <p>Coupling physics-based modelling with ML to reveal latent characteristics of physical systems.</p>
-              </div>
-              <figure class="motivation-figure motivation-figure-portrait">
-                <img src="images/nose-masked.png" alt="CFD airflow field in nasal anatomy" class="no-negative">
-              </figure>
-            </div>
-          </div>
+            </li>
+            <li>Typically acts as <strong>surrogate or accelerator</strong></li>
+            <li>Focus on reproducing <strong>known physical quantities</strong></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>A Shift of Paradigm: From Simulation to Inference</h3>
+          <ul>
+            <li>Move from <strong>approximating CFD</strong> → <strong>learning from CFD</strong></li>
+            <li>CFD seen as <strong>data generator</strong></li>
+            <li>Flow fields encode <strong>geometry + physics + conditions</strong></li>
+            <li>Use flows as <strong>informative signatures</strong></li>
+            <li>Goal: infer <strong>hidden system properties</strong></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Core Challenges</h3>
+          <ul>
+            <li>Extremely <strong>high-dimensional inputs</strong></li>
+            <li><strong>Limited labelled simulations</strong></li>
+            <li>Strong <strong>geometry-induced variability</strong></li>
+            <li>Different domains → hard <strong>comparison</strong></li>
+            <li>Learning becomes <strong>ill-posed</strong></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Limits of Standard Approaches</h3>
+          <ul>
+            <li>Dimensionality reduction learns <strong>global modes</strong></li>
+            <li>Captures <strong>dominant energetic structures</strong></li>
+            <li>Misses <strong>localized, geometry-driven effects</strong></li>
+            <li>Important features may be <strong>low variance</strong></li>
+            <li>Not sufficient for <strong>inference tasks</strong></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Research Question &amp; Motivation</h3>
+          <ul>
+            <li>Can <strong>flow fields</strong> enable <strong>inference</strong>?</li>
+            <li>Not only describe flows → but <strong>explain systems</strong></li>
+            <li>Detect:
+              <ul>
+                <li><strong>defects</strong></li>
+                <li><strong>anomalies</strong></li>
+                <li><strong>pathologies</strong></li>
+              </ul>
+            </li>
+            <li>Enable <strong>fast, data-driven decisions</strong></li>
+            <li>Bridge <strong>Physics and Machine Learning</strong></li>
+          </ul>
         </section>
       </section>
 
